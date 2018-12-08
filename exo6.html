@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <title>KDJS TD n°3</title>
+  <style>
+    input.ng-valid.ng-touched {
+      background: green;
+    }
+    input.ng-invalid.ng-touched {
+      background: red;
+    }
+  </style>
+  <script src="angular.min.js"></script>
+</head>
+
+<body>
+  <div ng-app="InscriptionForm" ng-controller="controller01">
+    <form name="form" novalidate>
+      <!-- NOM -->
+      <div class="form-group">
+        <label for="name">Votre nom:
+          <input type="text" class="form-control" ng-model="user.name" name="name" required>
+        </label>
+        <br />
+        <div ng-show="form.$submitted || form.name.$touched">
+          <div ng-show="form.name.$error.required">Veuillez indiquer votre nom svp.</div>
+        </div>
+      </div>
+      <!-- AGE -->
+      <div class="form-group">
+        <label for="name">Votre age:
+          <input type="number" class="form-control" ng-model="user.age" min="18" name="age" required>
+        </label>
+        <br />
+        <div ng-show="form.$submitted || form.age.$touched">
+          <div ng-show="form.age.$error.required">Veuillez indiquer votre age svp.</div>
+          <div ng-show="form.age.$error.min">Vous devez avoir plus de 18 ans.</div>
+        </div>
+      </div>
+      <!-- MAIL -->
+      <div class="form-group">
+        <label for="name">Votre email:
+          <input type="email" class="form-control" ng-model="user.email" min="18" name="email" required>
+        </label>
+        <br />
+        <div ng-show="form.$submitted || form.email.$touched">
+          <div ng-show="form.email.$error.required">Veuillez indiquer votre email svp.</div>
+          <div ng-show="form.email.$error.email">Ce n'est pas une adresse mail valide.</div>
+        </div>
+      </div>
+      <!-- AGREE -->
+      <div class="form-group">
+        <label for="name">Acceptez-vous les conditions générales d'utilisation ?
+          <input type="checkbox" class="form-control" ng-model="user.agree" min="18" name="agree" required>
+        </label>
+        <br />
+        <div ng-show="form.$submitted">
+          <div ng-show="form.email.$error.required">Veuillez accepter ceci svp.</div>
+        </div>
+      </div>
+      <!-- SUBMIT -->
+      <input type="submit" value="Inscription">
+      <div ng-show="form.$submitted">
+        <p ng-show="inscription">Vous-êtes maintenant inscrit.</p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    angular.module("InscriptionForm", [])
+    .controller("controller01", function($scope) {
+
+    });
+  </script>
+</body>
+
+</html>
