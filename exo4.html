@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>KDJS TD n°3</title>
+    <style>
+      /* Du bon style */
+    </style>
+    <script src="angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="calculette" ng-controller="controlleur01">
+      <input type="number" ng-model="nb1">
+      <input type="number" ng-model="nb2">
+      <select ng-model="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+      </select>
+      <p>{{ result() }}</p>
+    </div>
+
+    <script>
+      var app = angular.module("calculette", []);
+
+      app.controller("controlleur01", function($scope) {
+        $scope.operator = "+";
+        $scope.result = function() {
+          var calcul = 0;
+
+          if (!this.nb1 || !this.nb2) {
+            return "Entrez deux chiffres";
+          }
+
+          switch (this.operator) {
+            case "+":
+              calcul = parseInt(this.nb1) + parseInt(this.nb2);
+              break;
+            case "-":
+              calcul = parseInt(this.nb1) - parseInt(this.nb2);
+              break;
+            case "*":
+              calcul = parseInt(this.nb1) * parseInt(this.nb2);
+              break;
+            case "/":
+              calcul = parseInt(this.nb1) / parseInt(this.nb2);
+              break;
+          }
+          return this.nb1 + " " + this.operator + " " + this.nb2 + " = " + calcul;
+        }
+      });
+    </script>
+  </body>
+</html>
