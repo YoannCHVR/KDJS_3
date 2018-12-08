@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>KDJS TD n°3</title>
+    <script src="angular.min.js"></script>
+  </head>
+  <body>
+    <!-- Exemple: si le champ contient “red”, la couleur du fond est rouge, si le champ contient “toto”
+    le fond n’a pas de couleur car “toto” n’est pas une couleur valide -->    
+    <div ng-app="">
+      <p>Name: <input type="text" ng-model="name"></p>
+      <p ng-bind="name"></p>
+
+      <p>Color: <input type="text" ng-model="color" style="background-color: {{ color }}"></p>
+    </div>
+  </body>
+</html>
