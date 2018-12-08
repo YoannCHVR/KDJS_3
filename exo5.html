@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>exo5</title>
+    <script src="angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="Pokedex" ng-controller="controlleur01">
+      <ul>
+        <li ng-repeat="identity in identities">{{ identity.id }} : {{ identity.ename }}</li>
+      </ul>
+    </div>
+
+    <script>
+      var app = angular.module("Pokedex", []);
+
+      app.controller("controlleur01", function($scope, $http) {
+        $scope.identities;
+        $http.get("https://raw.githubusercontent.com/fanzeyi/Pokemon-DB/master/pokedex.json").then(function(response) {
+          if (response.status == 200) {
+            $scope.identities = response.data;
+          }
+        });
+
+      });
+    </script>
+  </body>
+</html>
