@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>KDJS TD n°3</title>
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="jquery-ui/jquery-ui.theme.min.css">
+    <style>
+      .container {
+        border: 1px solid black;
+        width: 500px;
+        height: 400px;
+      }
+
+      .element {
+        background-color: red;
+        width: 100px;
+        height: 75px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .item:hover {
+        cursor: pointer;
+      }
+    </style>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="jquery-ui/jquery-ui.min.js"></script>
+    <script>
+
+      $(document).ready(function() {
+        var xPos = $("#xPos");
+        var yPos = $("#yPos");
+
+        var smallDiv = $(".element");
+        smallDiv.draggable({
+          containment: "parent",
+          drag: function(event, ui) {
+            xPos.text(ui.position.left);
+            yPos.text(ui.position.top);
+          }
+        });
+
+        $("ul").sortable({
+          handle: ".item",
+          axis: "y",
+          cursor: "grabbing",
+        });
+
+        $("button").click(function() {
+          var i = 0;
+          $("ul li .position").each(function() {
+            i++;
+            $(this).text(i);
+          });
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="element"></div>
+    </div>
+    [x:<span id="xPos">0</span>; y:<span id="yPos">0</span>]
+    <h3>Video Games :</h3>
+    <ul>
+      <li><span class="item ui-icon ui-icon-arrowthick-2-n-s"></span> <span class="position">1</span> - League Of Legends</li>
+      <li><span class="item ui-icon ui-icon-arrowthick-2-n-s"></span> <span class="position">2</span> - Dofus</li>
+      <li><span class="item ui-icon ui-icon-arrowthick-2-n-s"></span> <span class="position">3</span> - Rocket League</li>
+    </ul>
+
+    <button>Afficher l'ordre</button>
+  </body>
+</html>
